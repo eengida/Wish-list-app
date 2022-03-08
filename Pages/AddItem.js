@@ -1,10 +1,41 @@
 import React, {useState} from 'react';
-import { KeyboardAvoidingView, StyleSheet, Text, View, TextInput, TouchableOpacity, Keyboard, ScrollView } from 'react-native';
+import { Button, KeyboardAvoidingView, StyleSheet, Text, View, TextInput, TouchableOpacity, Keyboard, ScrollView } from 'react-native';
 import Items from '../Components/Items';
+import { deleteDoc, doc, getDoc, setDoc } from 'firebase/firestore';
+import { db } from './firebase';
 
 export default function App() {
   const [item, setItem] = useState();
   const [addedItems, setAddedItems] = useState([]);
+
+// Storing User Data
+  const [userDoc, setUserDoc] = useState(null)
+  // Update Text
+  const [text, setText] = useState("")
+  // MARK: CRUD Functions
+
+  const Create = () => {
+    // MARK: Creating New Doc in Firebase
+    // Before that enable Firebase in Firebase Console
+    const myDoc = doc(db, "Wishlist", "MyDocument")
+
+    // Your Document Goes Here
+    const docData = {
+      "name": "iJustine",
+      "bio": "YouTuber"
+    }
+
+    setDoc(myDoc, docData)
+      // Handling Promises
+      .then(() => {
+        // MARK: Success
+        alert("Document Created!")
+      })
+      .catch((error) => {
+        // MARK: Failure
+        alert(error.message)
+      })
+  }
 
   const handleAddItem = () => {
     Keyboard.dismiss();
@@ -33,6 +64,7 @@ export default function App() {
         <Text style={styles.sectionTitle}>My WISH-LIST</Text>
         <View style={styles.items}>
           {/* This is where the tasks will go! */}
+          <Button title='Push' onPress={Create}/>
           {
             addedItems.map((item, index) => {
               return (
