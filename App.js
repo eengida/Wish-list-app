@@ -12,6 +12,7 @@ import ListScreen from './Pages/ListScreen';
 import RegisterScreen from './Pages/RegisterScreen';
 
 LogBox.ignoreLogs(['AsyncStorage']);
+LogBox.ignoreLogs(['Setting a timer']);
 
 const Stack = createNativeStackNavigator();
 
