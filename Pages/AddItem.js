@@ -1,12 +1,15 @@
 import React, {useState} from 'react';
 import { Button, KeyboardAvoidingView, StyleSheet, Text, View, TextInput, TouchableOpacity, Keyboard, ScrollView } from 'react-native';
 import Items from '../Components/Items';
-import { deleteDoc, doc, getDoc, setDoc } from 'firebase/firestore';
+import { deleteDoc, doc, getDoc, setDoc, collection } from 'firebase/firestore';
 import { auth, db } from './firebase';
 
 export default function App() {
   const [item, setItem] = useState();
   const [addedItems, setAddedItems] = useState([]);
+
+  const userDB = collection(db, "items");
+  const userID = auth.currentUser.uid;
 
 // Storing User Data
   const [userDoc, setUserDoc] = useState(null)
@@ -21,7 +24,7 @@ export default function App() {
 
     // Your Document Goes Here
     const docData = {
-      "items": {addedItems}
+      addedItems
     }
 
     setDoc(myDoc, docData)
@@ -63,7 +66,7 @@ export default function App() {
         <Text style={styles.sectionTitle}>My WISH-LIST</Text>
         <View style={styles.items}>
           {/* This is where the tasks will go! */}
-          <Button title='Push' onPress={Create}/>
+          <Button title='Save' onPress={Create}/>
           {
             addedItems.map((item, index) => {
               return (
