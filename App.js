@@ -1,7 +1,7 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View,ImageBackground,Pressable,Button } from 'react-native';
+import { StyleSheet, Text, View,ImageBackground,Pressable,Button, LogBox } from 'react-native';
 
 import LoginScreen from './Pages/LoginScreen';
 import HomeScreen from './Pages/HomeScreen';
@@ -11,6 +11,7 @@ import Notifications from './Pages/Notifications';
 import ListScreen from './Pages/ListScreen';
 import RegisterScreen from './Pages/RegisterScreen';
 
+LogBox.ignoreLogs(['AsyncStorage']);
 
 const Stack = createNativeStackNavigator();
 

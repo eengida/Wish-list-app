@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import { Button, KeyboardAvoidingView, StyleSheet, Text, View, TextInput, TouchableOpacity, Keyboard, ScrollView } from 'react-native';
 import Items from '../Components/Items';
 import { deleteDoc, doc, getDoc, setDoc } from 'firebase/firestore';
-import { db } from './firebase';
+import { auth, db } from './firebase';
 
 export default function App() {
   const [item, setItem] = useState();
@@ -17,7 +17,7 @@ export default function App() {
   const Create = () => {
     // MARK: Creating New Doc in Firebase
     // Before that enable Firebase in Firebase Console
-    const myDoc = doc(db, "Wishlist", "MyDocument")
+    const myDoc = doc(db, "users", auth.currentUser.uid)
 
     // Your Document Goes Here
     const docData = {
