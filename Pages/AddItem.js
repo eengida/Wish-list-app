@@ -7,15 +7,44 @@ import { auth, db } from './firebase';
 export default function App() {
   const [item, setItem] = useState();
   const [addedItems, setAddedItems] = useState([]);
+  const [dataLoaded, setDataLoaded] = useState(false);
+  // const [itemList, setItemList] = useState(null);
+  // const [splitItemList, setSplitItemList] = useState(null);
 
   const userDB = collection(db, "items");
   const userID = auth.currentUser.uid;
 
-// Storing User Data
+  // Storing User Data
   const [userDoc, setUserDoc] = useState(null)
   // Update Text
   const [text, setText] = useState("")
   // MARK: CRUD Functions
+
+  //load database
+  const getItems = () =>
+  {
+    const myDoc = doc(db, "wishlists", auth.currentUser.uid)
+
+    getDoc(myDoc)
+    .then((snapshot) => {
+      if(snapshot.exists) {
+        setUserDoc(snapshot.data())
+        setAddedItems(snapshot.data().addedItems)
+      } else {
+        alert("No Wishlist found!")
+      }
+    })
+    .catch((error) => {
+      alert(error.message)
+    })
+    setDataLoaded(true);
+  }
+
+  if (dataLoaded == false) {
+    getItems();
+  }
+
+
 
   const Create = () => {
     // MARK: Creating New Doc in Firebase
@@ -45,6 +74,7 @@ export default function App() {
     setItem(null);
   }
 
+
   const completeTask = (index) => {
     let itemsCopy = [...addedItems];
     itemsCopy.splice(index, 1);
@@ -67,6 +97,7 @@ export default function App() {
         <View style={styles.items}>
           {/* This is where the tasks will go! */}
           <Button title='Save' onPress={Create}/>
+          <Button title='Load' onPress={getItems}/>
           {
             addedItems.map((item, index) => {
               return (
