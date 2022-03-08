@@ -93,11 +93,11 @@ export default function App() {
 
       {/* Today's Tasks */}
       <View style={styles.tasksWrapper}>
-        <Text style={styles.sectionTitle}>My WISH-LIST</Text>
+        <Text style={styles.sectionTitle}>WishLists</Text>
         <View style={styles.items}>
           {/* This is where the tasks will go! */}
           <Button title='Save' onPress={Create}/>
-          <Button title='Load' onPress={getItems}/>
+          {/* <Button title='Load' onPress={getItems}/> */}
           {
             addedItems.map((item, index) => {
               return (
@@ -141,7 +141,9 @@ const styles = StyleSheet.create({
   },
   sectionTitle: {
     fontSize: 24,
-    fontWeight: 'bold'
+    fontWeight: 'bold',
+    alignItems: 'center',
+    marginLeft: '35%'
   },
   items: {
     marginTop: 30,
