@@ -17,19 +17,18 @@ export default function App() {
   const Create = () => {
     // MARK: Creating New Doc in Firebase
     // Before that enable Firebase in Firebase Console
-    const myDoc = doc(db, "users", auth.currentUser.uid)
+    const myDoc = doc(db, "wishlists", auth.currentUser.uid)
 
     // Your Document Goes Here
     const docData = {
-      "name": "iJustine",
-      "bio": "YouTuber"
+      "items": {addedItems}
     }
 
     setDoc(myDoc, docData)
       // Handling Promises
       .then(() => {
         // MARK: Success
-        alert("Document Created!")
+        alert("Successfully saved to wishlist!")
       })
       .catch((error) => {
         // MARK: Failure
