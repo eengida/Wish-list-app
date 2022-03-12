@@ -28,11 +28,11 @@ export default function App() {
         keyboardShouldPersistTaps='handled'
       >
 
-      {/* Today's Tasks */}
+      
       <View style={styles.tasksWrapper}>
         <Text style={styles.sectionTitle}>My WISH-LIST</Text>
         <View style={styles.items}>
-          {/* This is where the tasks will go! */}
+         
           {
             addedItems.map((item, index) => {
               return (
