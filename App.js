@@ -10,6 +10,7 @@ import FriendScreen from './Pages/FriendScreen';
 import Notifications from './Pages/Notifications';
 import ListScreen from './Pages/ListScreen';
 import RegisterScreen from './Pages/RegisterScreen';
+import Profile from './Pages/Profile';
 
 
 const Stack = createNativeStackNavigator();
@@ -26,6 +27,7 @@ export default function App() {
           <Stack.Screen name = "FriendScreen" component={FriendScreen} />
           <Stack.Screen name = "Notifications" component={Notifications} />
           <Stack.Screen name = "ListScreen" component={ListScreen} />
+          <Stack.Screen name = "Profile" component={Profile} />
       </Stack.Navigator>
     </NavigationContainer>
   );

@@ -7,7 +7,7 @@ export default function Notifications() {
   return (
     <SafeAreaView style={AuthStyle.container}>
         <View>
-          <Text>You have no notifications!</Text>
+          <Text>You have no notifications for now!</Text>
         </View>
     </SafeAreaView>
   )

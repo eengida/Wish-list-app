@@ -72,6 +72,15 @@ const HomeScreen = (props) => {
        
         
         />   
+        <StyledButtons 
+        content = {"My Profile"}
+        onPress = {()=>
+        {console.warn('Profile is pressed');
+        navigation.navigate("Profile");
+      }}
+       
+        
+        /> 
 
 
       </View>
