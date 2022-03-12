@@ -1,16 +1,79 @@
 import React, {useState} from 'react';
-import { KeyboardAvoidingView, StyleSheet, Text, View, TextInput, TouchableOpacity, Keyboard, ScrollView } from 'react-native';
+import { Button, KeyboardAvoidingView, StyleSheet, Text, View, TextInput, TouchableOpacity, Keyboard, ScrollView } from 'react-native';
 import Items from '../Components/Items';
+import { deleteDoc, doc, getDoc, setDoc, collection } from 'firebase/firestore';
+import { auth, db } from './firebase';
 
 export default function App() {
   const [item, setItem] = useState();
   const [addedItems, setAddedItems] = useState([]);
+  const [dataLoaded, setDataLoaded] = useState(false);
+  // const [itemList, setItemList] = useState(null);
+  // const [splitItemList, setSplitItemList] = useState(null);
+
+  const userDB = collection(db, "items");
+  const userID = auth.currentUser.uid;
+
+  // Storing User Data
+  const [userDoc, setUserDoc] = useState(null)
+  // Update Text
+  const [text, setText] = useState("")
+  // MARK: CRUD Functions
+
+  //load database
+  const getItems = () =>
+  {
+    const myDoc = doc(db, "wishlists", auth.currentUser.uid)
+
+    getDoc(myDoc)
+    .then((snapshot) => {
+      if(snapshot.exists) {
+        setUserDoc(snapshot.data())
+        setAddedItems(snapshot.data().addedItems)
+      } else {
+        alert("No Wishlist found!")
+      }
+    })
+    .catch((error) => {
+      alert(error.message)
+    })
+    setDataLoaded(true);
+  }
+
+  if (dataLoaded == false) {
+    getItems();
+  }
+
+
+
+  const Create = () => {
+    // MARK: Creating New Doc in Firebase
+    // Before that enable Firebase in Firebase Console
+    const myDoc = doc(db, "wishlists", auth.currentUser.uid)
+
+    // Your Document Goes Here
+    const docData = {
+      addedItems
+    }
+
+    setDoc(myDoc, docData)
+      // Handling Promises
+      .then(() => {
+        // MARK: Success
+        alert("Successfully saved to wishlist!")
+      })
+      .catch((error) => {
+        // MARK: Failure
+        alert(error.message)
+      })
+  }
 
   const handleAddItem = () => {
     Keyboard.dismiss();
     setAddedItems([...addedItems, item])
     setItem(null);
   }
+
 
   const completeTask = (index) => {
     let itemsCopy = [...addedItems];
@@ -30,9 +93,14 @@ export default function App() {
 
       
       <View style={styles.tasksWrapper}>
-        <Text style={styles.sectionTitle}>My WISH-LIST</Text>
+        <Text style={styles.sectionTitle}>WishLists</Text>
         <View style={styles.items}>
+
          
+          {/* This is where the tasks will go! */}
+          <Button title='Save' onPress={Create}/>
+          {/* <Button title='Load' onPress={getItems}/> */}
+
           {
             addedItems.map((item, index) => {
               return (
@@ -76,7 +144,9 @@ const styles = StyleSheet.create({
   },
   sectionTitle: {
     fontSize: 24,
-    fontWeight: 'bold'
+    fontWeight: 'bold',
+    alignItems: 'center',
+    marginLeft: '35%'
   },
   items: {
     marginTop: 30,

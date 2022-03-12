@@ -3,8 +3,10 @@ import { useNavigation } from '@react-navigation/core';
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { KeyboardAvoidingViewBase, StyleSheet, Text, View,TextInput, Button } from 'react-native'
 import { KeyboardAvoidingView,TouchableOpacity, Alert } from 'react-native'
-import { auth } from './firebase';
+import { auth, db } from './firebase';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
+import { deleteDoc, doc, getDoc, setDoc } from 'firebase/firestore';
+import { FirebaseError } from 'firebase/app';
 
 export default function RegisterScreen() {
     const [email, setEmail] =useState('')
@@ -13,9 +15,11 @@ export default function RegisterScreen() {
     const navigation = useNavigation();
 
 
-    const handleSignup = ()=>{
+    const handleSignup = async () => {
             
         createUserWithEmailAndPassword(auth,email,password)
+        .then((result) => {
+                })
         .then(userCredentials => {
             const user = userCredentials.user;
             console.log("registered",user.email);
