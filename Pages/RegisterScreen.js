@@ -11,6 +11,8 @@ import { FirebaseError } from 'firebase/app';
 export default function RegisterScreen() {
     const [email, setEmail] =useState('')
     const [password, setpassword] =useState('')
+    const [firstName, setFirstName] =useState('')
+    const [lastName, setLastName] =useState('')
     const [confirmPassword, setConfirmPassword] = useState('')
     const navigation = useNavigation();
 
@@ -26,7 +28,9 @@ export default function RegisterScreen() {
 
             // Your Document Goes Here
             const docData = {
-              email
+              email,
+              "First Name": firstName,
+              "Last Name": lastName
             }
         
             setDoc(myDoc, docData)
@@ -64,6 +68,24 @@ export default function RegisterScreen() {
     <SafeAreaView style={{ flex: 1}}> 
         <KeyboardAvoidingView style={styles.container} behavior='padding'>
             <View style = {styles.inputContainer}>
+            <View style={{ flexDirection: 'row'}}>
+                <TextInput
+                
+                placeholder='First'
+                value={firstName}
+                onChangeText = {text =>setFirstName(text) }
+                style = {styles.inputSmall}
+
+                />
+                <TextInput
+                
+                placeholder='Last'
+                value={lastName}
+                onChangeText = {text =>setLastName(text) }
+                style = {styles.inputSmall}
+
+                />
+                </View>
                 <TextInput
                 
                 placeholder='Email'
@@ -133,6 +155,16 @@ const styles = StyleSheet.create({
          marginTop:5,
          color:'white'
      },
+     inputSmall:{
+        backgroundColor:"green",
+        width: '40%',
+        paddingHorizontal:5,
+        paddingVertical:10,
+        borderRadius:10,
+        marginTop:5,
+        marginRight: 25,
+        color:'white'
+    },
      buttonContainer:{
          width: '60%',
          justifyContent:'center',
