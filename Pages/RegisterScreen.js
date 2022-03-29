@@ -29,8 +29,8 @@ export default function RegisterScreen() {
             // Your Document Goes Here
             const docData = {
               email,
-              "First Name": firstName,
-              "Last Name": lastName
+              firstName,
+              lastName
             }
         
             setDoc(myDoc, docData)

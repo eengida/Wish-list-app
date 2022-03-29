@@ -1,9 +1,50 @@
-import React from "react";
+import React, {useState,useEffect} from 'react'
 import { StyleSheet, Text, View, SafeAreaView, Image, ScrollView } from "react-native";
 import { Ionicons, MaterialIcons } from "@expo/vector-icons";
 import AuthStyle from '../assets/styles/AuthStyle'
+import { deleteDoc, doc, getDoc, setDoc, collection } from 'firebase/firestore';
+import { auth, db } from './firebase';
 
 export default function App() {
+
+    const [dataLoaded, setDataLoaded] = useState(false);
+    const [firstName, setFirstName] = useState('')
+    const [lastName, setLastName] = useState('')
+  // const [itemList, setItemList] = useState(null);
+  // const [splitItemList, setSplitItemList] = useState(null);
+
+  const userDB = collection(db, "users");
+  const userID = auth.currentUser.uid;
+
+  // Storing User Data
+  const [userDoc, setUserDoc] = useState(null)
+  // Update Text
+  const [text, setText] = useState("")
+  // MARK: CRUD Functions
+
+    const getItems = () =>
+  {
+    const myDoc = doc(db, "users", auth.currentUser.uid)
+
+    getDoc(myDoc)
+    .then((snapshot) => {
+      if(snapshot.exists) {
+        setUserDoc(snapshot.data())
+        setFirstName(snapshot.data().firstName)
+        setLastName(snapshot.data().lastName)
+      } else {
+        alert("No User found!")
+      }
+    })
+    .catch((error) => {
+      alert(error.message)
+    })
+    setDataLoaded(true);
+  }
+
+  if (dataLoaded == false) {
+    getItems();
+  }
     return (
         <SafeAreaView style={styles.container}>
             <ScrollView showsVerticalScrollIndicator={false}>
@@ -26,8 +67,8 @@ export default function App() {
                 </View>
 
                 <View style={styles.infoContainer}>
-                    <Text style={[styles.text, { fontWeight: "200", fontSize: 36 }]}>Jenny</Text>
-                    <Text style={[styles.text, { color: "#AEB5BC", fontSize: 14 }]}>Chef</Text>
+                    <Text style={[styles.text, { fontWeight: "200", fontSize: 36 }]}>{firstName}</Text>
+                    <Text style={[styles.text, { color: "#AEB5BC", fontSize: 14 }]}>{lastName}</Text>
                 </View>
 
                 <View style={styles.statsContainer}>
