@@ -25,7 +25,7 @@ const HomeScreen = (props) => {
       
       
       />
-      <Text>user-Email:{auth.currentUser?.email}</Text>
+      <Text style={{ marginTop: 0 }}>User:{auth.currentUser?.email}</Text>
       <TouchableOpacity 
       onPress={handleSignout}
       style = {styles.button}
@@ -72,6 +72,15 @@ const HomeScreen = (props) => {
        
         
         />   
+        <StyledButtons 
+        content = {"My Profile"}
+        onPress = {()=>
+        {console.warn('Profile is pressed');
+        navigation.navigate("Profile");
+      }}
+       
+        
+        /> 
 
 
       </View>
@@ -103,11 +112,11 @@ const styles = StyleSheet.create({
       },
       button:{
         backgroundColor: "brown",
-               width:'96%',
-               padding: 15,
+               width:'80%',
+               padding: 5,
                borderRadius:10,
                alignItems:'center',
-               marginTop: 40
+               marginTop: 0
       },
       buttonContainer:{
         position:'absolute',
@@ -115,8 +124,8 @@ const styles = StyleSheet.create({
         width:'100%'
       },
       photo:{
-        width:'94%',
-        height:'85%',
+        width:'100%',
+        height:'90%',
         alignContent:'center',
         alignItems:'center',
         justifyContent:'center'

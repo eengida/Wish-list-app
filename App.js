@@ -19,6 +19,14 @@ import Notifications from "./Pages/Notifications";
 import ListScreen from "./Pages/ListScreen";
 import Items from "./Components/Items";
 import ListItems from "./Components/ListItems";
+import LoginScreen from './Pages/LoginScreen';
+import HomeScreen from './Pages/HomeScreen';
+import AddItem from './Pages/AddItem';
+import FriendScreen from './Pages/FriendScreen';
+import Notifications from './Pages/Notifications';
+import ListScreen from './Pages/ListScreen';
+import RegisterScreen from './Pages/RegisterScreen';
+import Profile from './Pages/Profile';
 
 import RegisterScreen from "./Pages/RegisterScreen";
 
@@ -49,6 +57,16 @@ export default function App() {
         <Stack.Screen name="ListScreen" component={ListScreen} />
         <Stack.Screen name="Items" component={Items} />
         <Stack.Screen name="ListItems" component={ListItems} />
+    <NavigationContainer> 
+      <Stack.Navigator initialRouteName='Login'>
+          <Stack.Screen options={{headerShown:false}} name = "Login" component={LoginScreen} />  
+          <Stack.Screen options={{headerShown:false}} name="Register" component={RegisterScreen} />
+          <Stack.Screen  name = "Home" component={HomeScreen} />   
+          <Stack.Screen name = "AddItem" component={AddItem} />
+          <Stack.Screen name = "FriendScreen" component={FriendScreen} />
+          <Stack.Screen name = "Notifications" component={Notifications} />
+          <Stack.Screen name = "ListScreen" component={ListScreen} />
+          <Stack.Screen name = "Profile" component={Profile} />
       </Stack.Navigator>
     </NavigationContainer>
   );

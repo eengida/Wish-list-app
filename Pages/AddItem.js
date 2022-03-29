@@ -104,6 +104,19 @@ export default function App() {
             <Button title="Save" onPress={Create} />
             {/* <Button title='Load' onPress={getItems}/> */}
             {addedItems.map((item, index) => {
+
+      
+      <View style={styles.tasksWrapper}>
+        <Text style={styles.sectionTitle}>WishLists</Text>
+        <View style={styles.items}>
+
+         
+          {/* This is where the tasks will go! */}
+          <Button title='Save' onPress={Create}/>
+          {/* <Button title='Load' onPress={getItems}/> */}
+
+          {
+            addedItems.map((item, index) => {
               return (
                 <TouchableOpacity
                   key={index}
