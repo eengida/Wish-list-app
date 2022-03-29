@@ -5,13 +5,25 @@ import { auth } from './firebase';
 import { useNavigation } from '@react-navigation/core';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
 import { ImageBackground } from 'react-native';
+import {signInWithPopup,FacebookAuthProvider} from 'firebase/auth';
 
 import Header from '../Header';
 
 
 const LoginScreen = () => {
 
-        
+        const signInWithFacebook = ()=>{
+            const provider = new FacebookAuthProvider();
+            signInWithPopup(auth,provider)
+            .then((re)=>{
+              console.log(re);
+            })
+            .catch((err)=>{
+               console.log(err.message);
+            })
+
+        }
+    
 
          const [email, setEmail] =useState('')
          const [password, setpassword] =useState('')
@@ -83,6 +95,19 @@ const LoginScreen = () => {
                     <Text style = {styles.buttonText}> Login</Text>
             
                     </TouchableOpacity>
+
+
+
+                    <TouchableOpacity
+                    onPress = {signInWithFacebook}
+                    style= {styles.button}
+                    >                                   
+            
+                    <Text style = {styles.buttonText}> Login With Facebook</Text>
+            
+                    </TouchableOpacity>
+
+
             
                     <TouchableOpacity
                     onPress = {() => navigation.navigate("Register")}
