@@ -18,11 +18,27 @@ export default function RegisterScreen() {
     const handleSignup = async () => {
             
         createUserWithEmailAndPassword(auth,email,password)
-        .then((result) => {
-                })
         .then(userCredentials => {
             const user = userCredentials.user;
             console.log("registered",user.email);
+
+            const myDoc = doc(db, "users", auth.currentUser.uid)
+
+            // Your Document Goes Here
+            const docData = {
+              email
+            }
+        
+            setDoc(myDoc, docData)
+              // Handling Promises
+              .then(() => {
+                // MARK: Success
+                alert("Successfully saved user information!")
+              })
+              .catch((error) => {
+                // MARK: Failure
+                alert(error.message)
+              })
         })
         .catch(error => Alert.alert('Error', error.message, [{text: 'OK'},], {cancelable: true}))
         
