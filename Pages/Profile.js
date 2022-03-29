@@ -121,7 +121,7 @@ const styles = StyleSheet.create({
         backgroundColor: "#FFF"
     },
     text: {
-        fontFamily: "sans-serif",
+        // fontFamily: "sans-serif",
         color: "#52575D"
     },
     image: {
