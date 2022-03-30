@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { SafeAreaView } from 'react-native-safe-area-context'
 import AuthStyle from '../assets/styles/AuthStyle'
-import { View, Text, TextInput, StyleSheet } from 'react-native'
+import { View, Text, TextInput, StyleSheet, FlatList } from 'react-native'
 import { deleteDoc, doc, getDoc, setDoc, collection } from 'firebase/firestore';
 import { auth, db } from './firebase';
 
@@ -9,6 +9,7 @@ import { auth, db } from './firebase';
 export default function FriendScreen() {
   const [search, setSearch] = useState()
   const [dataLoaded, setDataLoaded] = useState(false)
+  const [userList, setUserList] = useState([])
 
   const userDB = collection(db, "items");
   const userID = auth.currentUser.uid;
@@ -22,14 +23,15 @@ export default function FriendScreen() {
   //load database
   const getItems = () =>
   {
-    const myDoc = doc(db, "wishlists", auth.currentUser.uid)
+    const myDoc = doc(db, "users", "userList")
 
     getDoc(myDoc)
     .then((snapshot) => {
       if(snapshot.exists) {
         setUserDoc(snapshot.data())
+        setUserList(snapshot.data().users)
       } else {
-        alert("No Wishlist found!")
+        alert("No Users found!")
       }
     })
     .catch((error) => {
@@ -42,33 +44,27 @@ export default function FriendScreen() {
     getItems();
   }
 
-
-
-  const Create = () => {
-    // MARK: Creating New Doc in Firebase
-    // Before that enable Firebase in Firebase Console
-    const myDoc = doc(db, "wishlists", auth.currentUser.uid)
-
-    // Your Document Goes Here
-    const docData = {
-      addedItems
-    }
-
-    setDoc(myDoc, docData)
-      // Handling Promises
-      .then(() => {
-        // MARK: Success
-        alert("Successfully saved to wishlist!")
-      })
-      .catch((error) => {
-        // MARK: Failure
-        alert(error.message)
-      })
-  }
   return (
     <SafeAreaView style={AuthStyle.container}>
         <View>
         <TextInput style={styles.input} placeholder={'Enter username'} onChangeText={text => setSearch(text)} />
+        <FlatList 
+          data={[
+            {key: 'Devin'},
+            {key: 'Dan'},
+            {key: 'Dominic'},
+            {key: 'Jackson'},
+            {key: 'James'},
+            {key: 'Joel'},
+            {key: 'John'},
+            {key: 'Jillian'},
+            {key: 'Jimmy'},
+            {key: 'Julie'},
+          ]}
+          renderItem={({item}) => <Text style={styles.item}>{item.key}</Text>}
+          keyExtractor = {(item, index) => index.toString()}
+
+          />
         </View>
     </SafeAreaView>
   )
@@ -119,4 +115,9 @@ const styles = StyleSheet.create({
     borderWidth: 1,
   },
   addText: {},
+  item: {
+    padding: 10,
+    fontSize: 18,
+    height: 44,
+  },
 });
