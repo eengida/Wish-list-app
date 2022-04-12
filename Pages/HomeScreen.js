@@ -82,6 +82,16 @@ const HomeScreen = (props) => {
         
         /> 
 
+      <StyledButtons 
+        content = {"Share"}
+        onPress = {()=>
+        {console.warn('Share is pressed');
+        navigation.navigate("ShareList");
+      }}
+       
+        
+        /> 
+
 
       </View>
     </View>

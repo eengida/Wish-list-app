@@ -11,6 +11,7 @@ import Notifications from './Pages/Notifications';
 import ListScreen from './Pages/ListScreen';
 import RegisterScreen from './Pages/RegisterScreen';
 import Profile from './Pages/Profile';
+import ShareList from './Pages/ShareList';
 
 LogBox.ignoreLogs(['AsyncStorage']);
 LogBox.ignoreLogs(['Setting a timer']);
@@ -30,6 +31,7 @@ export default function App() {
           <Stack.Screen name = "Notifications" component={Notifications} />
           <Stack.Screen name = "ListScreen" component={ListScreen} />
           <Stack.Screen name = "Profile" component={Profile} />
+          <Stack.Screen name = "ShareList" component={ShareList} />
       </Stack.Navigator>
     </NavigationContainer>
   );
