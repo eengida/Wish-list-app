@@ -71,6 +71,7 @@ const LoginScreen = () => {
             value={email}
             onChangeText = {text => setEmail(text)}
             style = {styles.input}
+            autoCapitalize = 'none'
 
             />
 
@@ -81,6 +82,7 @@ const LoginScreen = () => {
             onChangeText = {text =>setpassword(text) }
             style = {styles.input}
             secureTextEntry
+            autoCapitalize = 'none'
 
             />
 

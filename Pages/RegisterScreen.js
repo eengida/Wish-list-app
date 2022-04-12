@@ -75,6 +75,7 @@ export default function RegisterScreen() {
                 value={firstName}
                 onChangeText = {text =>setFirstName(text) }
                 style = {styles.inputSmall}
+                autoCapitalize = 'none'
 
                 />
                 <TextInput
@@ -83,6 +84,7 @@ export default function RegisterScreen() {
                 value={lastName}
                 onChangeText = {text =>setLastName(text) }
                 style = {styles.inputSmall}
+                autoCapitalize = 'none'
 
                 />
                 </View>
@@ -92,6 +94,7 @@ export default function RegisterScreen() {
                 value={email}
                 onChangeText = {text => setEmail(text)}
                 style = {styles.input}
+                autoCapitalize = 'none'
 
                 />
 
@@ -102,6 +105,7 @@ export default function RegisterScreen() {
                 onChangeText = {text =>setpassword(text) }
                 style = {styles.input}
                 secureTextEntry
+                autoCapitalize = 'none'
 
                 />
                 <TextInput
@@ -111,6 +115,7 @@ export default function RegisterScreen() {
                 onChangeText = {text =>setConfirmPassword(text) }
                 style = {styles.input}
                 secureTextEntry
+                autoCapitalize = 'none'
 
                 />
             </View>    
