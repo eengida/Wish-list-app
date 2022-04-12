@@ -10,8 +10,21 @@ import List from "../Components/List";
 
 
 export default function FriendScreen() {
+
+  useEffect(() => {
+    const getData = async () => {
+      const apiResponse = await fetch(
+        "https://my-json-server.typicode.com/kevintomas1995/logRocket_searchBar/languages"
+      );
+      const data = await apiResponse.json();
+      setFakeData(data);
+    };
+    getData();
+  }, []);
+
   const [search, setSearch] = useState("")
   const [clicked, setClicked] = useState(false);
+  const [fakeData, setFakeData] = useState();
   const [dataLoaded, setDataLoaded] = useState(false)
   const [userList, setUserList] = useState([])
 
@@ -67,6 +80,15 @@ export default function FriendScreen() {
         clicked={clicked}
         setClicked={setClicked}
       />
+      { (
+
+<List
+  searchPhrase={search}
+  data={fakeData}
+  setClicked={setClicked}
+/>
+
+)}
         <FlatList 
           data={[
             {key: 'Devin'},

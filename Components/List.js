@@ -16,7 +16,7 @@ const Item = ({ name, details }) => (
 );
 
 // the filter
-const List = ({ searchPhrase, setCLicked, data }) => {
+const List = ({ searchPhrase, setClicked, data }) => {
   const renderItem = ({ item }) => {
     // when no input, show all
     if (searchPhrase === "") {
