@@ -6,6 +6,7 @@ import { deleteDoc, doc, getDoc, setDoc, collection } from 'firebase/firestore';
 import { auth, db } from './firebase';
 import { Searchbar }from 'react-native-paper'
 import SearchBar from "../Components/SearchBar";
+import List from "../Components/List";
 
 
 export default function FriendScreen() {
