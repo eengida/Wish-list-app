@@ -1,0 +1,27 @@
+[
+    {
+        "id": "1",
+        "name": "Yi Ding",
+        "details": "yiding@ggc.edu"
+    },
+    {
+        "id": "2",
+        "name": "Jovan Zuniga",
+        "details": "jovartzy@gmail.com"
+    },
+    {
+        "id": "3",
+        "name": "William Baldwin",
+        "details": "WilliamLChaffin@dayrep.com" 
+    },
+    {
+        "id": "4",
+        "name": "James Liddle",
+        "details": "JamesRPalmer@teleworm.us"
+    },
+    {
+        "id": "5",
+        "name": "Hannah Montana",
+        "details": "hmontanta@ggc.edu"
+    }
+]

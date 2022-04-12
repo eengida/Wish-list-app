@@ -11,16 +11,19 @@ import List from "../Components/List";
 
 export default function FriendScreen() {
 
-  useEffect(() => {
-    const getData = async () => {
-      const apiResponse = await fetch(
-        "https://my-json-server.typicode.com/kevintomas1995/logRocket_searchBar/languages"
-      );
-      const data = await apiResponse.json();
-      setFakeData(data);
-    };
-    getData();
-  }, []);
+  // useEffect(() => {
+  //   const getData = async () => {
+  //     const apiResponse = await fetch(
+  //       "https://my-json-server.typicode.com/kevintomas1995/logRocket_searchBar/languages"
+  //     );
+  //     const data = await apiResponse.json();
+  //     setFakeData(data);
+  //   };
+  //   getData();
+  // }, []);
+
+  const customData = require('../assets/users.json');
+
 
   const [search, setSearch] = useState("")
   const [clicked, setClicked] = useState(false);
@@ -84,12 +87,12 @@ export default function FriendScreen() {
 
 <List
   searchPhrase={search}
-  data={fakeData}
+  data={customData}
   setClicked={setClicked}
 />
 
 )}
-        <FlatList 
+        {/* <FlatList 
           data={[
             {key: 'Devin'},
             {key: 'Dan'},
@@ -105,7 +108,7 @@ export default function FriendScreen() {
           renderItem={({item}) => <Text style={styles.item}>{item.key}</Text>}
           keyExtractor = {(item, index) => index.toString()}
 
-          />
+          /> */}
         </View>
     </SafeAreaView>
   )
