@@ -3,6 +3,7 @@ import { Button, KeyboardAvoidingView, StyleSheet, Text, View, TextInput, Toucha
 import Items from '../Components/Items';
 import { deleteDoc, doc, getDoc, setDoc, collection } from 'firebase/firestore';
 import { auth, db } from './firebase';
+import { Share } from "react-native";
 
 export default function App() {
   const [item, setItem] = useState();
@@ -80,7 +81,28 @@ export default function App() {
     itemsCopy.splice(index, 1);
     setAddedItems(itemsCopy)
   }
+   //sharing on other apps(text mssg, gmail,whatsup...)
+  const onShare = async () => {
+    try {
+      const result = await Share.share({
+        message:
+          'Here is my wish-list...',
+      });
+      if (result.action === Share.sharedAction) {
+        if (result.activityType) {
+          // shared with activity type of result.activityType
+        } else {
+          // shared
+        }
+      } else if (result.action === Share.dismissedAction) {
+        // dismissed
+      }
+    } catch (error) {
+      alert(error.message);
+    }
+  };
 
+   
   return (
     <View style={styles.container}>
       {/* Added this scroll view to enable scrolling when list gets longer than the page */}
@@ -91,13 +113,12 @@ export default function App() {
         keyboardShouldPersistTaps='handled'
       >
 
-      
       <View style={styles.tasksWrapper}>
         <Text style={styles.sectionTitle}>WishLists</Text>
         <View style={styles.items}>
 
+
          
-          {/* This is where the tasks will go! */}
           <Button title='Save' onPress={Create}/>
           {/* <Button title='Load' onPress={getItems}/> */}
 
@@ -111,6 +132,12 @@ export default function App() {
             })
           }
         </View>
+
+        <View style={{ marginTop: 50 }}>
+       <Button onPress={onShare} title="Share" />
+       </View>
+
+
       </View>
         
       </ScrollView>

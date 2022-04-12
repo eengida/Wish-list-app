@@ -4,6 +4,7 @@ import AuthStyle from "../assets/styles/AuthStyle";
 import { View, Text,Button } from "react-native";
 import { Touchable } from "react-native";
 import { Share } from "react-native";
+import files from "../assets/Base64";
 
 
 
@@ -12,7 +13,9 @@ const Sharing = () => {
     try {
       const result = await Share.share({
         message:
-          'React Native | A framework for building native apps using React',
+          'Here is my wish-listtt...',
+          url: files.image    //not working for now
+          
       });
       if (result.action === Share.sharedAction) {
         if (result.activityType) {
