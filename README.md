@@ -3,8 +3,11 @@
 This is an application where you find your friends based on the items that are on your wishlist.
 
 ## How to Install
-* You can find app on the Play Store if you use an Android device.
-* You can also find the app in the App Store if you use an iOS device.
+Install the application through VSCode by cloning the project from github
+* Press Ctrl+Shift+P after launching VSCode
+* Click "Git: Clone" then "Clone from Github"
+* Type "eengida/Wish-list-app" without quotation marks to find the project
+* Click "eengida/Wish-list-app"
 
 ## About
 * In this application, you can log in and add as many items as you like to the wishlist
