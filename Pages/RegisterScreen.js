@@ -66,7 +66,8 @@ export default function RegisterScreen() {
 
   return (
     <SafeAreaView style={{ flex: 1}}> 
-        <KeyboardAvoidingView style={styles.container} behavior='padding'>
+        <KeyboardAvoidingView style={styles.container} behavior= 'height'
+    enabled={true}>
             <View style = {styles.inputContainer}>
             <View style={{ flexDirection: 'row'}}>
                 <TextInput

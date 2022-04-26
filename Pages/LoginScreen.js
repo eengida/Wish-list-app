@@ -58,7 +58,8 @@ const LoginScreen = () => {
 
     <KeyboardAvoidingView
     style = {styles.container}
-    behavior= 'padding'>
+    behavior= 'height'
+    enabled={true}>
         <View style = {styles.container}> 
             <ImageBackground 
             source={require('../assets/gifts.png')}
