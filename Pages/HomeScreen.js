@@ -92,6 +92,16 @@ const HomeScreen = (props) => {
         
         /> 
 
+<StyledButtons 
+        content = {"Cameras"}
+        onPress = {()=>
+        {
+        navigation.navigate("Cameras");
+      }}
+       
+        
+        /> 
+
 
       </View>
     </View>
