@@ -5,7 +5,7 @@ import { Camera } from 'expo-camera';
 import { Button } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 
-export default function App() {
+export default function App({ navigation }) {
   const [hasPermission, setHasPermission] = useState(null);
   const [camera, setCamera] = useState(null);
   const [image, setImage] = useState(null);
@@ -19,6 +19,14 @@ export default function App() {
 
     })();
   }, []);
+
+  useEffect(() => {
+    if(image != null) {
+      navigation.navigate('Save', {image});
+    }
+  }, [image])
+
+
   const takePicture = async () =>{
       //block the code till pic is taken
     if(camera){
@@ -32,20 +40,20 @@ export default function App() {
   }
 
 
-  const pickImage = async () => {
-    // No permissions request is necessary for launching the image library
-    let result = await ImagePicker.launchImageLibraryAsync({
-      mediaTypes: ImagePicker.MediaTypeOptions.Images,
-      allowsEditing: true,
-      aspect: [1, 1],
-      quality: 1,
-    });
-    console.log(result);
+//   const pickImage = async () => {
+//     // No permissions request is necessary for launching the image library
+//     let result = await ImagePicker.launchImageLibraryAsync({
+//       mediaTypes: ImagePicker.MediaTypeOptions.Images,
+//       allowsEditing: true,
+//       aspect: [1, 1],
+//       quality: 1,
+//     });
+//     console.log(result);
 
-if (!result.cancelled) {
-  setImage(result.uri);
-}
-};
+// if (!result.cancelled) {
+//   setImage(result.uri);
+// }
+// };
 
 
 
@@ -58,7 +66,7 @@ if (!result.cancelled) {
   }
   return (
     <View style={{flex:1}}>
-      <Camera style={{flex:1}} type={type}
+      <Camera style={styles.fixedRatio} type={type} ratio={'1:1'}
           //accessing camera
          ref = {ref => setCamera(ref)}
       >
@@ -112,6 +120,10 @@ const styles = StyleSheet.create({
     text:{
         backgroundColor:'black',
         color:'white'
+    },
+    fixedRatio: {
+      flex: 1,
+      aspectRatio: 2 / 3
     }
 }); 
 

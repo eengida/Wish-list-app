@@ -13,6 +13,7 @@ import RegisterScreen from './Pages/RegisterScreen';
 import Profile from './Pages/Profile';
 import ShareList from './Pages/ShareList';
 import Cameras from './Pages/Cameras';
+import Save from './Pages/Save'
 
 LogBox.ignoreLogs(['AsyncStorage']);
 LogBox.ignoreLogs(['Setting a timer']);
@@ -34,6 +35,7 @@ export default function App() {
           <Stack.Screen name = "Profile" component={Profile} />
           <Stack.Screen name = "ShareList" component={ShareList} />
           <Stack.Screen name = "Cameras" component={Cameras} />
+          <Stack.Screen name = "Save" component={Save}/>
       </Stack.Navigator>
     </NavigationContainer>
   );
