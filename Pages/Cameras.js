@@ -40,20 +40,20 @@ export default function App({ navigation }) {
   }
 
 
-//   const pickImage = async () => {
-//     // No permissions request is necessary for launching the image library
-//     let result = await ImagePicker.launchImageLibraryAsync({
-//       mediaTypes: ImagePicker.MediaTypeOptions.Images,
-//       allowsEditing: true,
-//       aspect: [1, 1],
-//       quality: 1,
-//     });
-//     console.log(result);
+  const pickImage = async () => {
+    // No permissions request is necessary for launching the image library
+    let result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.Images,
+      allowsEditing: true,
+      aspect: [1, 1],
+      quality: 1,
+    });
+    console.log(result);
 
-// if (!result.cancelled) {
-//   setImage(result.uri);
-// }
-// };
+if (!result.cancelled) {
+  setImage(result.uri);
+}
+};
 
 
 
@@ -72,7 +72,7 @@ export default function App({ navigation }) {
       >
         <View style={{flex:1,backgroundColor:'transparent',flexDirection:'row',justifyContent:'space-between'}}>
           <TouchableOpacity
-           style = {{flex:0.3,alignSelf:'flex-end',alignItems:'center'}}
+           style = {{flex:0.2,alignSelf:'flex-end',alignItems:'center'}}
             onPress={() => {
               setType(
                 type === Camera.Constants.Type.back
@@ -89,11 +89,11 @@ export default function App({ navigation }) {
              <Text style = {{fontSize:18,marginBottom:10,color:'white'}}> takePic</Text>
             </TouchableOpacity>
             <TouchableOpacity
-           style = {{flex:0.3,alignSelf:'flex-end',alignItems:'center'}}
+           style = {{flex:0.8,alignSelf:'flex-end',alignItems:'center'}}
            onPress={ () => pickImage()} >
              <Text style = {{fontSize:18,marginBottom:10,color:'white'}}> CameraRoll</Text>
             </TouchableOpacity>
-            {image && <Image source = {{uri:image}} style ={{flex:1}} />}
+            {/* {image && <Image source = {{uri:image}} style ={{flex:1}} />} */}
         </View>
       </Camera>
      
